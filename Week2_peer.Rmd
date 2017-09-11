@@ -1,0 +1,38 @@
+---
+title: 'Peer-graded Assignment: R Markdown and Leaflet'
+author: "Sergej Horvat"
+date: '8 rujna 2017 '
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown with Leaflet
+
+```{r MyMap,warning=FALSE, echo=FALSE,}
+library(leaflet)
+#summary(cars)
+set.seed(12345678)
+
+Icon <- makeIcon(
+  iconUrl = "http://www.free-icons-download.net/images/mozilla-firefox-icon-4760.png",
+  iconWidth = 40, iconHeight = 40,
+  iconAnchorX = 20 , iconAnchorY = 20
+)
+
+
+myMap <- data.frame(lat=runif(50,min=45.3, max=45.4),
+                    lng=runif(50, min=14.4, max= 14.5))
+myMap %>% leaflet() %>%
+        addTiles() %>%
+        addMarkers(icon=Icon,clusterOptions = markerClusterOptions()) 
+       
+
+
+myMap
+
+
+```
+
